@@ -3,13 +3,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the application..'
+                sh 'mvn clean'
             }
         }
 
-         stage('Test') {
+        stage('Test') {
             steps {
-                echo 'Testing the application..'
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn -B -DskipTests package'
             }
         }
     }
